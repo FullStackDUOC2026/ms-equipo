@@ -119,7 +119,7 @@ public class EquiposService {
                     .orElseThrow(() -> new RuntimeException("Equipo no encontrado"));
 
             equipo.setEstado("LIBRE");
-            
+
             equiposRepository.save(equipo);
 
             return EquiposDTO.builder()
