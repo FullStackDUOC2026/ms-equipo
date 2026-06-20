@@ -91,6 +91,64 @@ public class EquiposService {
         }
         return false;
     }
-}
+
+
+        public EquiposDTO asignarEquipo(Integer cod, Integer idUsuario) {
+            Equipos equipo = equiposRepository.findById(cod)
+                    .orElseThrow(() -> new RuntimeException("Equipo no encontrado"));
+
+            if (!equipo.getEstado().equals("LIBRE")) {
+                throw new RuntimeException("Equipo no disponible");
+            }
+
+            equipo.setEstado("OCUPADO");
+
+            equiposRepository.save(equipo);
+
+           return EquiposDTO.builder()
+                    .codigo(equipo.getCodigo())
+                    .marca(equipo.getMarca())
+                    .fecha_ingreso(equipo.getFecha_ingreso())
+                    .descripcion(equipo.getDescripcion())
+                    .estado(equipo.getEstado())
+                    .build();
+        }
+
+        public EquiposDTO liberarEquipo(Integer codigo) {
+            Equipos equipo = equiposRepository.findById(codigo)
+                    .orElseThrow(() -> new RuntimeException("Equipo no encontrado"));
+
+            equipo.setEstado("LIBRE");
+            
+            equiposRepository.save(equipo);
+
+            return EquiposDTO.builder()
+                    .codigo(equipo.getCodigo())
+                    .marca(equipo.getMarca())
+                    .fecha_ingreso(equipo.getFecha_ingreso())
+                    .descripcion(equipo.getDescripcion())
+                    .estado(equipo.getEstado())
+                    .build();
+        }
+
+        public EquiposDTO enviarMantencion(Integer codigo) {
+            Equipos equipo = equiposRepository.findById(codigo)
+                    .orElseThrow(() -> new RuntimeException("Equipo no encontrado"));
+
+            equipo.setEstado("MANTENCION");
+
+            equiposRepository.save(equipo);
+
+            return EquiposDTO.builder()
+                    .codigo(equipo.getCodigo())
+                    .marca(equipo.getMarca())
+                    .fecha_ingreso(equipo.getFecha_ingreso())
+                    .descripcion(equipo.getDescripcion())
+                    .estado(equipo.getEstado())
+                    .build();
+        }
+    }
+
+
 
 
