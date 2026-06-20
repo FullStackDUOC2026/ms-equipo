@@ -17,4 +17,5 @@ public class EquiposDTO {
     private String marca;
     private Date fecha_ingreso;
     private String descripcion;
+    private String estado;
 }
