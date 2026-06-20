@@ -27,5 +27,5 @@ public class Equipos {
     @Column (name = "Descripcion", nullable = false, length = 100)
     private String descripcion;
     @Column(name= "Estado", nullable = false)
-    private boolean estado;
+    private String estado;
 }
