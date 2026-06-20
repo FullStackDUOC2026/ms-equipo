@@ -84,7 +84,7 @@ public class EquiposService {
 
     public Boolean delete (Integer id) {
 
-        if (equiposRepository.existsById(id)){
+        if (equiposRepository.existsById(id)) {
 
             equiposRepository.deleteById(id);
             return true;
