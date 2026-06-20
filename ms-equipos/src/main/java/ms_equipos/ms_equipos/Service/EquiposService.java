@@ -82,7 +82,7 @@ public class EquiposService {
                 .build();
     }
 
-    public Boolean delete (Integer id){
+    public Boolean delete (Integer id) {
 
         if (equiposRepository.existsById(id)){
 
