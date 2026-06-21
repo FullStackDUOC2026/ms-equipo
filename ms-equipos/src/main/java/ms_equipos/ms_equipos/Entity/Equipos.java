@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ms_equipos.ms_equipos.enums.EstadoEquipo;
 
 import java.util.Date;
 
@@ -12,20 +13,25 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table (name = "Equipos")
+@Table(name = "Equipos")
 @Builder
 public class Equipos {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codigo;
-    @Column (name = "Marca", nullable = false, length = 20)
-    private String marca;
-    @Column (name = "fecha ingreso", nullable = false, length = 50)
-    private Date fecha_ingreso;
-    @Column (name = "Descripcion", nullable = false, length = 100)
+    private Long codigo;
+
+    @Column(name = "Marca", nullable = false, length = 50)
+    private String tipo;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fecha_ingreso", nullable = false)
+    private Date fechaIngreso;
+
+    @Column(name = "Descripcion", nullable = false, length = 100)
     private String descripcion;
-    @Column(name= "Estado", nullable = false)
-    private String estado;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Estado", nullable = false)
+    private EstadoEquipo estado = EstadoEquipo.LIBRE;
 }
